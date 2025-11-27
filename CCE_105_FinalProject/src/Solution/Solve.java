@@ -1,79 +1,48 @@
 package Solution;
-import java.util.*;
+import GUI_LAyout.Gui;
+import Final_Prod_Problem.Problem;
 
 public class Solve {
 
-	public int rob(int[] Num) {
-		
-		int n = Num.length;
-		
-		
-		if (n == 0) {	return 0;}
-		
-		if (n == 1) {	return Num[0];}
-		
-		Stack<Integer> dp = new Stack<>();
-		int[] Checker = new int[n];
-		
-		if (Num[0]>Num[1]) {
-			Checker[0] = 1;
-			Checker[1] = 0;
-			dp.push(Num[0]);
-		} else {
-			Checker[1] = 1;
-			Checker[0] = 0;
-			dp.push(Num[1]);
-		}
-		
-		
-		for (int i = 2; i < n; i+= 2 ) {
-			
-			if ((i+1)< n) {
-				//Pass
-			} else if (n%2 != 0 && (n - i == 2)){
-				// if the length of the numbers of houses is odd, the last one will break;
-				break;
-			} else {
-				break;
-			}
-			
-			Checker[i] =  (Num[i] > Num[i+1] ? 1 : 0);
-			Checker[i+1] =  (Num[i+1] > Num[i] ? 1 : 0);
-			
-			if (Checker[i-1] != 1) {
-				
-				dp.push(dp.peek() + Math.max(Num[i],Num[i+1]));
-			} else {
-				dp.push(dp.peek() + Num[i+1]);
-				Checker[i] = 0;
-				Checker[i+1] = 1;
-			}
-			
-			
-			
-		}
-		
-		
-		if (Checker[n-2] == 0 && n%2 != 0) {
-			dp.push(dp.peek() + Num[n-1]);
-			Checker[n-1] = 1;
-		}
-			
 
+	public String rob(int[] nums) {
 		
-		return dp.peek();
+		String Total = "0";
 		
-	}
+        // Get the number of houses
+        int n = nums.length;
+
+        // If there are no houses, return 0
+        if (n == 0) {
+            return Total;
+        }
+
+        // If there is only one house, return the amount in that house
+        if (n == 1) {
+        	Total = String.valueOf(nums[0]);
+            return Total;
+        }
+
+
+        int[] dp = new int[2];
+
+        // Base cases:
+        dp[0] = nums[0];
+        dp[1] = nums[1]; 
+
+        // Iterate through the remaining houses
+        for (int i = 2; i < n; i++) {
+        	
+            int X = Math.max(dp[1], dp[0] + nums[i]);
+            dp[0] = dp[1];
+            dp[1] = X;
+         
+        }
+        
+        Total = String.valueOf(dp[1]);
+ 
+        return Total;
+    }
+
 	
-	
-	public static void main(String[] args) {
-		Solve Robbing = new Solve();
-		int[] Houses = {4,1,2,6,8,1,3,9};
-		
-		
-		
-		int Max = Robbing.rob(Houses);
-		System.out.println(Max);
-		
-	}
 }
