@@ -1,11 +1,13 @@
 package GUI_LAyout;
+import Solution.Solve;
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 
 public class Gui {
-	
-	
+	static String DELIMETER = ",";
+
 	public static void Page () {
 	
 	// Window
@@ -54,6 +56,28 @@ public class Gui {
 	frame.add(txtOutput).setBounds(150, 230, 150, 30);
 	frame.add(lbloutput).setBounds(200, 250, 200, 30);
 	frame.add(btnCalc).setBounds(570, 350, 100, 30);
+	
+	btnCalc.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Solve system = new Solve();
+			String inputValues = txtInput.getText();
+			String[] gettingValue = inputValues.split(DELIMETER);
+			int[] store = new int[gettingValue.length];
+			
+			try {
+				
+				for (int Values = 0; Values < gettingValue.length ; Values++) {
+					store[Values] = Integer.parseInt(gettingValue[Values]);
+				}
+			} catch (NumberFormatException e1) {
+				JOptionPane.showMessageDialog(null, "Input Unrecognized, Try Again");
+			}
+			txtOutput.setText(system.rob(store));
+		}
+	});
+	
+	
 	
 	}
 
