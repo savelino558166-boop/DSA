@@ -1,18 +1,18 @@
-# 🏚️ House Robber — Dynamic Programming Problem
+# House Robber — Dynamic Programming Problem
 
-## 📌 **Context**
+##  **Context**
 
 John is a meticulous thief planning his next heist on a street where houses are lined up in a row. Each house contains a certain amount of money. However, adjacent houses are connected by a security system — robbing two neighboring houses triggers the alarm. Your task is to help John maximize the total loot **without robbing two adjacent houses**.
 
 ---
 
-## 🎯 **Problem Statement**
+## **Problem Statement**
 
 Given an array of non-negative integers where each element represents the amount of money in a house, determine the **maximum amount of money** that can be robbed **without robbing adjacent houses**.
 
 ---
 
-## 🔢 **Input Format**
+## **Input Format**
 
 A single line of **space-separated integers** representing the money in each house.
 
@@ -24,7 +24,7 @@ A single line of **space-separated integers** representing the money in each hou
 
 ---
 
-## 🧾 **Output Format**
+## **Output Format**
 
 A **single integer** representing the maximum amount of money that can be robbed.
 
@@ -36,7 +36,7 @@ A **single integer** representing the maximum amount of money that can be robbed
 
 ---
 
-## ✅ **Examples**
+## **Examples**
 
 | Input                 | Output |
 | --------------------- | ------ |
@@ -53,7 +53,7 @@ A **single integer** representing the maximum amount of money that can be robbed
 
 ---
 
-## 📏 **Constraints**
+## **Constraints**
 
 * `1 <= nums.length <= 100`
 * `0 <= nums[i] <= 400`
@@ -62,18 +62,18 @@ A **single integer** representing the maximum amount of money that can be robbed
 
 ---
 
-## 💡 **Solution Approach (Dynamic Programming)**
+## **Solution Approach (Dynamic Programming)**
 
 We use **dynamic programming** to ensure we always choose the best possible total at each step.
 
-### 🔍 **Core Idea**
+### **Core Idea**
 
 Let `dp[i]` represent the maximum money that can be robbed **up to house i**.
 For every house `i`, we have two choices:
 
-1️⃣ **Rob house i** → Add `nums[i]` + `dp[i-2]` (since we must skip the previous house)
+ **Rob house i** → Add `nums[i]` + `dp[i-2]` (since we must skip the previous house)
 
-2️⃣ **Do NOT rob house i** → Take `dp[i-1]`
+ **Do NOT rob house i** → Take `dp[i-1]`
 
 So the recurrence becomes:
 
@@ -85,23 +85,23 @@ The answer will be stored in `dp[n-1]`.
 
 ---
 
-## 🧠 **Handling Edge Cases**
+## **Handling Edge Cases**
 
 * If there are **no houses** → result is `0`
 * If there is **only 1 house** → rob it
 
 ---
 
-## ⏱️ Time & Space Complexity
+## Time & Space Complexity
 
 * **Time Complexity:** `O(n)` — we traverse the list once
 * **Space Complexity:** `O(n)` — due to DP array
 
-🔧 *Optimization:* Can be improved to `O(1)` space by only keeping the last two computed values.
+ *Optimization:* Can be improved to `O(1)` space by only keeping the last two computed values.
 
 ---
 
-## 🧩 **Key Insights**
+## **Key Insights**
 
 * Dynamic Programming is ideal for optimization problems built from overlapping subproblems.
 * Identifying the recurrence relation is essential.
@@ -109,7 +109,7 @@ The answer will be stored in `dp[n-1]`.
 
 ---
 
-## 🌍 **Real-World Applications**
+## **Real-World Applications**
 
 This logic applies to situations where adjacent selections are restricted, such as:
 
@@ -119,11 +119,9 @@ This logic applies to situations where adjacent selections are restricted, such 
 
 ---
 
-## 🔗 Reference
+## Reference
 
 Original problem context and explanation:
 [https://www.dsaproblem.com/solution/dynamic-programming-problem/solve-the-house-robber-problem-where-adjacent-houses-cannot-be-robbed-and-you-need-to-maximize-the-loot](https://www.dsaproblem.com/solution/dynamic-programming-problem/solve-the-house-robber-problem-where-adjacent-houses-cannot-be-robbed-and-you-need-to-maximize-the-loot)
 
 ---
-
-👍 Feel free to modify or expand this README depending on your project or language implementation!
